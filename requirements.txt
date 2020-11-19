@@ -1,0 +1,2 @@
+speedtest_cli==2.1.2
+influxdb-client==1.12.0
