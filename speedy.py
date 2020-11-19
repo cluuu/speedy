@@ -1,7 +1,14 @@
 import speedtest as st
-import influxdb_client
+from influxdb_client import InfluxDBClient
 from datetime import datetime
 
+
+ifuser = "grafana"
+ifpass = "1234"
+ifdb = speed
+ifhost = 127.0.0.1
+ifport = 8086
+measurement_name = "speed"
 
 class SpeedcheckResult:
 
@@ -15,6 +22,20 @@ class SpeedcheckResult:
         return ('Test run on: {}. Download Speed: {}. Upload Speed: {}. Ping: {}').format(self.date, self.download,
                                                                                           self.upload,
                                                                                           self.ping)
+
+    def write_to_db(self): 
+        body = [
+            {
+                "measurement": measurement_name,
+                "time":self.date,
+                "fields": {
+                    "download": self.download, 
+                    "upload": self.upload, 
+                    "ping": self.ping
+                }
+            }
+        ]
+        ifclient = influxdb_client()
 
 
 def speedcheck():
@@ -46,6 +67,9 @@ if __name__ == '__main__':
     print(test)
 
     speedcheck()
+
+
+
 
 
 class CsvTools:
