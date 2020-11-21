@@ -36,6 +36,7 @@ class SpeedcheckResult:
             }
         ]
         ifclient = influxdb_client()
+        ifclient.write_points(body)
 
 
 def speedcheck():
@@ -60,6 +61,7 @@ def speedcheck():
     res = SpeedcheckResult(timestamp, ul, dl, ping)
 
     print(res)
+    res.write_to_db
 
 
 if __name__ == '__main__':
