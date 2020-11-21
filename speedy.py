@@ -6,7 +6,7 @@ from datetime import datetime
 ifuser = "grafana"
 ifpass = "1234"
 ifdb = "speed"
-ifhost = 127.0.0.1
+ifhost = "127.0.0.1"
 ifport = 8086
 measurement_name = "speed"
 
@@ -35,7 +35,7 @@ class SpeedcheckResult:
                 }
             }
         ]
-        ifclient = influxdb_client()
+        ifclient = InfluxDBClient(ifhost, ifport, ifuser, ifpass, measurement_name)
         ifclient.write_points(body)
 
 
@@ -69,12 +69,3 @@ if __name__ == '__main__':
     print(test)
 
     speedcheck()
-
-
-
-
-
-class CsvTools:
-
-    def write_header(self, delimiter, path):
-        return None
