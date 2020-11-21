@@ -5,7 +5,7 @@ from datetime import datetime
 
 ifuser = "grafana"
 ifpass = "1234"
-ifdb = speed
+ifdb = "speed"
 ifhost = 127.0.0.1
 ifport = 8086
 measurement_name = "speed"
